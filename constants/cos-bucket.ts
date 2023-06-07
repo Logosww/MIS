@@ -1,0 +1,1 @@
+export const COSBucketBaseUrl = 'https://signdesk-1308682615.cos.ap-shanghai.myqcloud.com';
