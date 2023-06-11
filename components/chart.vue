@@ -1,9 +1,9 @@
 <template>
-  <a-card class="relative rounded-lg h-96" :body-style="{ padding: 0, width: '100%', height: '100%' }" hoverable>
+  <div class="relative rounded-xl bg-white p-8 shadow-md dark:bg-[#100c2a]" style="height: 30rem">
     <client-only>
-      <chart-content :option="option" />
+      <chart-content :option="option" ref="chartContentRef" />
     </client-only>
-  </a-card>
+  </div>
 </template>
 
 <script lang="ts" setup>

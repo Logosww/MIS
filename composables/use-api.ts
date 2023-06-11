@@ -55,7 +55,7 @@ export const useDeleteUser = (id: string) =>
   post('/api/user/delete', { id }) as HttpResponse<null>;
 
 export const useGetAllBlogs = () =>
-  get('/api/blog/list', undefined, undefined) as HttpResponse<Blog[]>
+  get('/api/blog/list', undefined, undefined, { immediate: false }) as HttpResponse<Blog[]>;
 
 export const useGetBlogDetail = (id: string) =>
   get('/api/blog/getDetail', { id }) as HttpResponse<BlogDetail>;
@@ -68,3 +68,9 @@ export const useModifyBlog = (pramas: { id: string; title: string, content: stri
 
 export const useDeleteBlog = (id: string) =>
   post('/api/blog/delete', { id }) as HttpResponse<null>;
+
+export const useGetUserCount = () =>
+  get('/api/user/count') as HttpResponse<number>;
+
+export const useGetBlogCount = () =>
+  get('/api/blog/count') as HttpResponse<number>;

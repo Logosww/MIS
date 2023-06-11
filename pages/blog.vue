@@ -14,6 +14,7 @@
 
 <script lang="ts" setup>
 
+
 const route = useRoute();
 const { id } = route.query;
 

@@ -8,7 +8,8 @@ import {
   BarChart,
   LineChart,
   PieChart,
-  RadarChart
+  RadarChart,
+  GaugeChart
 } from 'echarts/charts';
 import {
   TitleComponent,
@@ -24,7 +25,8 @@ import type {
   BarSeriesOption, 
   LineSeriesOption,
   PieSeriesOption,
-  RadarSeriesOption
+  RadarSeriesOption,
+  GaugeSeriesOption
 } from 'echarts/charts';
 import type {
   TitleComponentOption,
@@ -41,7 +43,8 @@ type ECSeriesOption =
   | BarSeriesOption
   | LineSeriesOption
   | PieSeriesOption
-  | RadarSeriesOption;
+  | RadarSeriesOption
+  | GaugeSeriesOption;
 
 export type ECOption = ComposeOption<
   | ECSeriesOption
@@ -60,6 +63,7 @@ echarts.use([
   LineChart,
   PieChart,
   RadarChart,
+  GaugeChart,
   LabelLayout,
   UniversalTransition,
   CanvasRenderer
@@ -72,7 +76,7 @@ const props = defineProps<{
 const containerRef = ref<HTMLDivElement>();
 let chart: ECharts;
 
-useResizeObserver(containerRef, () => chart!.resize());
+useResizeObserver(containerRef, () => nextTick(() => chart!.resize()));
 
 onMounted(() => {
   const dom = containerRef.value!
@@ -88,4 +92,6 @@ watch(isDark, (val) => {
   chart = echarts.init(containerRef.value!, val ? 'dark' : undefined);
   chart.setOption(props.option);
 });
+
+watch(() => props.option, val => chart.setOption(val), { deep: true });
 </script>
